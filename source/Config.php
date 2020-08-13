@@ -1,5 +1,5 @@
 <?php
-define("ROOT", "http://localhost/EcommerceFoda");
+define("ROOT", "http://localhost/vue-sistema-de-comentarios");
 
 define("CSS", "public/css/");
 

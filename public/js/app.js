@@ -13,6 +13,9 @@ const data = {
     // status de animação
     anima: '',
     animaItem: '',
+
+    // URL padrão
+    root: 'http://localhost/vue-sistema-de-comentarios/api'
 }
 
 
@@ -28,7 +31,7 @@ const app = new Vue({
         
         // QUANDO MONTAR O RENDER BUSQUE OS COMENTARIOS DO BANCO DE DADOS
         axios
-        .get('http://localhost/EcommerceFoda/api')
+        .get(this.root)
         .then(response => (this.comments = response.data))
     },
     methods: {
@@ -53,11 +56,15 @@ const app = new Vue({
 
             // Cria um formData de acordo com o formulario
             var form = document.getElementById("form")
+            
+            // tira os espaços vazios da esquerda
+            form.elements[1].value = form.elements[1].value.trim()
+
             var formData = new FormData(form)
             
             // Cadastra esse comentario no banco
             axios
-            .post('http://localhost/EcommerceFoda/api/store', formData)
+            .post(`${this.root}/store`, formData)
             .catch(function (error) {
                 console.log(error);
             })
@@ -70,9 +77,11 @@ const app = new Vue({
             this.status = 'alert-success'
 
             // Busca os comentarios no banco
-            axios
-            .get('http://localhost/EcommerceFoda/api')
-            .then(response => (this.comments = response.data))
+            sleep(100).then(() => {
+                axios
+                .get(this.root)
+                .then(response => (this.comments = response.data))
+            })
 
             // Deixa os Campos do form vazios 
             this.name = '',
@@ -90,7 +99,7 @@ const app = new Vue({
 
             // Depois remove o comentario do banco
             axios
-            .get(`http://localhost/EcommerceFoda/api/${id}`)
+            .get(`${this.root}/${id}`)
         }
     },
     computed: {
@@ -107,9 +116,9 @@ const app = new Vue({
 
         // A cada 10 segundos faça uma busca no banco
         comments() {
-            sleep(10000).then(() => {
+            sleep(1000000).then(() => {
                 axios
-                .get('http://localhost/EcommerceFoda/api')
+                .get(this.root)
                 .then(response => (this.comments = response.data))
             });
         }
