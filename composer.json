@@ -1,12 +1,12 @@
 {
-    "name": "juniorketo/ecommercefoda",
+    "name": "adrian7123/vue-sistema-de-comentarios",
     "description": "Ecommerce Foda",
     "minimum-stability": "stable",
     "license": "MIT",
     "authors": [
         {
-            "name": "Junior Keto",
-            "email": "iamsparky17@gmail.com",
+            "name": "Adrian Bueno",
+            "email": "bueno1dad@gmail.com",
             "role": "developer"
         }
     ],
